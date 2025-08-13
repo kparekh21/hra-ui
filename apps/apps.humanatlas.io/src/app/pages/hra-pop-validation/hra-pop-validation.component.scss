@@ -1,0 +1,50 @@
+@use 'utils' as utils;
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  padding: 5rem 6.5rem;
+  .data-viewer-container {
+    width: 100%;
+  }
+
+  .header-section {
+    padding: 1rem;
+  }
+
+  .header {
+    @include utils.use-font(title, large);
+    display: flex;
+    align-items: center;
+    height: 4.5rem;
+    background-color: vars.$surface-container-low;
+    border-bottom: 0.0625rem solid vars.$outline-variant;
+    gap: 1rem;
+
+    .label {
+      flex-grow: 1;
+      gap: 0.5rem;
+      padding: 0.25rem;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.125rem;
+
+      mat-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 624.9375rem;
+      }
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 999px) {
+    padding: 5rem 2.5rem;
+  }
+  @media (min-width: 320px) and (max-width: 639px) {
+    padding: 5rem 1rem;
+  }
+}

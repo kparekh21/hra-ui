@@ -1,0 +1,73 @@
+<!-- hra-pop-validation.component.html -->
+<hra-page-section tagline="HRApop Validation">
+  Visualize cell type populations of the HRA (HRApop v1.0)
+  <div class="hra-pop-validation">
+    <!-- Data Viewer Container -->
+    <div class="data-viewer-container">
+      <!-- Graphs Section -->
+      <div class="header-section">
+        <div class="header">
+          <div class="icon">
+            <hra-icon svgIcon="product:cell-population-predictor"></hra-icon>
+            <hra-icon svgIcon="organ:spleen"></hra-icon>
+            <span class="label">Cell Population Graphs</span>
+          </div>
+        </div>
+
+        <!-- Configurations Container -->
+        <div class="configurations-container">
+          <hra-config-selector
+            [dataTypeOptions]="dataTypeOptions"
+            [(selectedDataType)]="selectedDataType"
+            [organOptions]="organOptions()"
+            [(selectedOrgan)]="selectedOrgan"
+            [(selectedTools)]="selectedTools"
+            [(selectedSexes)]="selectedSexes"
+            [xAxisOptions]="xAxisOptions()"
+            [(selectedXAxis)]="selectedXAxis"
+            [yAxisOptions]="yAxisOptions"
+            [(selectedYAxis)]="selectedYAxis"
+            [sortOptions]="sortOptions"
+            [(selectedSort)]="selectedSort"
+            [availableTools]="availableTools()"
+            [loading]="loading()"
+          >
+          </hra-config-selector>
+        </div>
+
+        <!-- Charts Content Section -->
+        <div class="charts-content">
+          <!-- Loading State -->
+          @if (loading(); as isLoading) {
+            <div class="loading-state">
+              <p>Loading {{ dataTypeConfigs[selectedDataType()].label }}</p>
+            </div>
+          } @else {
+            <!-- Error State -->
+            @if (error(); as err) {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                <p>{{ err }}</p>
+              </div>
+            } @else {
+              <!-- Charts - Single Row/Column Facet Chart -->
+              <div class="graphs">
+                @if (vegaSpecs().length === 0) {
+                  <div class="no-data">
+                    <p>No data available for the selected filters.</p>
+                  </div>
+                } @else {
+                  <div class="charts-grid">
+                    @for (spec of vegaSpecs(); track spec) {
+                      <hra-bar-graph [spec]="spec" class="chart-item"></hra-bar-graph>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</hra-page-section>
