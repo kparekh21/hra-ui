@@ -15,6 +15,15 @@
       type="font/woff2"
       crossorigin
     />
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect');
+        if (redirect) {
+          window.history.replaceState({}, document.title, redirect);
+        }
+      })();
+    </script>
     <link
       rel="preload"
       href="media/material-symbols-outlined-latin-wght-normal.woff2"

@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <script>
+      // Adapted from: https://github.com/rafrex/spa-github-pages
+      (function (l) {
+        var repo = '/hra-ui';
+        if (!l.pathname.startsWith(repo)) return;
+        var path = l.pathname.replace(repo, '');
+        var redirect = repo + '/index.html?redirect=' + encodeURIComponent(path + l.search + l.hash);
+        l.replace(redirect);
+      })(window.location);
+    </script>
+  </head>
+  <body>
+    Redirecting…
+  </body>
+</html>
