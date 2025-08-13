@@ -18,7 +18,7 @@ apps/humanatlas.io/src/app/utils/data-schema.js
 /bazel-out
 
 # Documentation
-/docs/*
+# /docs/*
 !/docs/index.html
 
 # profiling files
